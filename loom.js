@@ -1,6 +1,5 @@
 ﻿/*jslint white: true, browser: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true, immed: true, maxerr: 50, indent: 4 */
-/*global loom*/
-loom = (function () {
+var loom = (function () {
     'use strict';
     var createMediator, 
         createObservableValue,
