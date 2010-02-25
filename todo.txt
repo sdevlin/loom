@@ -1,0 +1,4 @@
+jquery integration for ui updates
+observe nested objects
+observable arrays
+observable standalones

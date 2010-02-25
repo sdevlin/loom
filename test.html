@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>loom test</title>
+	<link rel="stylesheet" href="test.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="loom.js"></script>
+	<script type="text/javascript">
+			var hero,
+				log;
+			hero = LOOM.createObservable({
+					name: 'lane',
+					hitpoints: 100,
+					strength: 12,
+					agility: 10
+			});
+			log = function (message) {
+					var log = $('#log');
+					log.html(log.html() + message);
+			};
+			
+			$(function () {
+					var status = $('#status'),
+							div = $('<div/>'),
+							propName,
+							property,
+							value,
+							i;
+					for (i = 0; i < hero.observableProperties.length; i += 1) {
+							propName = hero.observableProperties[i];
+							property = hero[propName];
+							value = property();
+							div = div
+									.clone()
+									.addClass(propName)
+									.html(propName + ': ' + value)
+									.appendTo(status);
+							hero[propName].observe((function (div, propName, value) {
+									return function (value) {
+											div.html(propName + ': ' + value);
+									};
+							}(div, propName, value)));
+					}
+			});
+			
+			$(function () {
+					var rand = function () {
+							return Math.floor(Math.random() * 5);
+					};
+					
+					$('#level-up').click(function () {
+							var strength = hero.strength(),
+									agility = hero.agility();
+							log('courage and wit hath served thee well!\n');
+							hero.strength(strength + rand());
+							hero.agility(agility + rand());
+							log('\n');
+					});
+			});
+			
+			$(function () {
+					hero.observe(function (propName, newValue, oldValue) {
+							log('  thy ' + propName + ' increased from ' + oldValue + ' to ' + newValue + '\n');
+					});
+			});
+	</script>
+</head>
+<body>
+	<div id="status"></div>
+	<div id="controls">
+		<input id="level-up" type="button" value="level up">
+	</div>
+	<textarea id="log" disabled="disabled"></textarea>
+</body>
+</html>

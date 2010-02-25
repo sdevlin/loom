@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Verdana, Helvetica, sans-serif;
+    background: #ddd;
+    color: #222;
+}
+
+div, textarea {
+    margin: 10px;
+}
+
+textarea#log {
+    background: #bbb;
+    border: 1px solid #222;
+    padding: 10px;
+    height: 350px;
+    width: 800px;
+    overflow-y: scroll;
+}
