@@ -1,4 +1,5 @@
 jquery integration for ui updates
-observe nested objects
-observable arrays
-observable standalones
+
+really the only things you want to observe are values: numbers, booleans, and strings (and date? and regex?)
+the create observable function should take anything, object or value, and recursively wrap all its values in observables
+there should be an observable collection class, too
