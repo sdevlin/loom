@@ -18,7 +18,7 @@ loom = (function () {
                 if (typeof value.length === 'number' &&
                     !(value.propertyIsEnumerable('length')) &&
                     typeof value.splice === 'function') {
-                    return 'array';    
+                    return 'array';
                 }
             } else {
                 return 'null';
@@ -80,8 +80,8 @@ loom = (function () {
             for (propName in o) {
                 if (o.hasOwnProperty(propName)) {
                     o[propName] = createObservable(
-                        o[propName], 
-                        notifier, 
+                        o[propName],
+                        notifier,
                         prefix + propName
                     );
                 }
@@ -106,7 +106,7 @@ loom = (function () {
         mediator: {
             create: createMediator
         },
-        observable: { 
+        observable: {
             create: function (object) {
                 createObservable(object);
             },
